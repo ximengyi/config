@@ -1,0 +1,10 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=Phpstorm
+Comment=phpstorm-2019.1.1
+Exec=pycharm-2018.1.4/bin/pycharm.sh（相当于windows里面.exe）
+Icon=/mytest/pycharm-2018.1.4/bin/pycharm.png（相当于快捷方式）
+Terminal=false
+StartupNotify=true
+Type=Application
+Categories=Application;
