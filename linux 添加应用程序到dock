@@ -11,3 +11,16 @@ Terminal=false
 StartupNotify=true
 Type=Application
 Categories=Application;
+
+//=====================================================================
+#!/usr/bin/env xdg-open
+[Desktop Entry]
+Encoding=UTF-8
+Name=Phpstorm
+Comment=phpstorm-2019.1.1
+Exec=/home/meng/software/PhpStorm-2019.1.1/bin/phpstorm.sh
+Icon=/home/meng/software/PhpStorm-2019.1.1/bin/phpstorm.png
+Terminal=false
+StartupNotify=true
+Type=Application
+Categories=Application;                     
