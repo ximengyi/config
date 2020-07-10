@@ -1,0 +1,5 @@
+下载地址
+https://github.com/nashaofu/dingtalk/releases
+===========================
+sudo rpm -ivh dingtalk-2.1.5-latest-x86_64.rpm
+
