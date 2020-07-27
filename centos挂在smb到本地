@@ -1,0 +1,6 @@
+1安装smb client
+dnf install samba samba-common samba-client -y
+2安装cifs-utils
+yum install cifs-utils
+3挂载
+mount -t cifs -o username="meng" //192.168.2.11/meng /opt/smbmeng
