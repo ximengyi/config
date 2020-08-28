@@ -1,0 +1,4 @@
+1 设置mysql远程连接
+
+update user set host='%' where host='localhost';
+flush privileges;
