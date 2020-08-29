@@ -4,4 +4,6 @@
  sudo systemctl start smb
  开机启动
  sudo systemctl enable smb
+添加用户
+ sudo smbpasswd -a meng
  
