@@ -1,2 +1,4 @@
-设置全局镜像仓库为阿里云
+1设置全局镜像仓库为阿里云
 composer config -g repo.packagist composer https://mirrors.aliyun.com/composer/
+2 composer 安装laravel
+composer create-project laravel/laravel=5.8.* --prefer-dist 项目名称
