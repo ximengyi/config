@@ -1,0 +1,12 @@
+windows 下
+ext 扩展找不到
+开启配置
+extension_dir = "ext"
+下载composer
+报openssl 相关错误
+开启openssl扩展
+配置
+[root@localhost ~]# wget http://curl.haxx.se/ca/cacert.pem
+[root@localhost ~]# mv cacert.pem /usr/local/openssl/ssl/certs/cacert.pem
+[root@localhost ~]# vim /yourpath/php.ini
+openssl.cafile=/usr/local/openssl/ssl/certs/cacert.pem
