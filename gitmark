@@ -1,0 +1,2 @@
+清除缓存的认证信息
+git credential-manager uninstall
