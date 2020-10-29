@@ -2,3 +2,57 @@
 select user,host from user;
 update user set host='%' where host='localhost';
 flush privileges;
+2 一键lnmp脚本设置远程连接
+
+iptables -L -n --line-numbers # 查看已有的iptables规则
+
+在iptables规则里有一行是DROP，末尾以3306结尾的，在lnmp1.5里面序号是6，不同版本可能会不一样，自行确认
+
+iptables -D INPUT 6
+num  target     prot opt source               destination
+1    ACCEPT     udp  --  0.0.0.0/0            0.0.0.0/0            udp dpt:53
+2    ACCEPT     tcp  --  0.0.0.0/0            0.0.0.0/0            tcp dpt:53
+3    ACCEPT     udp  --  0.0.0.0/0            0.0.0.0/0            udp dpt:67
+4    ACCEPT     tcp  --  0.0.0.0/0            0.0.0.0/0            tcp dpt:67
+5    ACCEPT     udp  --  0.0.0.0/0            0.0.0.0/0            udp dpt:53
+6    ACCEPT     tcp  --  0.0.0.0/0            0.0.0.0/0            tcp dpt:53
+7    ACCEPT     udp  --  0.0.0.0/0            0.0.0.0/0            udp dpt:67
+8    ACCEPT     tcp  --  0.0.0.0/0            0.0.0.0/0            tcp dpt:67
+9    ACCEPT     all  --  0.0.0.0/0            0.0.0.0/0
+10   ACCEPT     all  --  0.0.0.0/0            0.0.0.0/0            state RELATED,ESTABLISHED
+11   ACCEPT     tcp  --  0.0.0.0/0            0.0.0.0/0            tcp dpt:22
+12   ACCEPT     tcp  --  0.0.0.0/0            0.0.0.0/0            tcp dpt:80
+13   ACCEPT     tcp  --  0.0.0.0/0            0.0.0.0/0            tcp dpt:443
+14   DROP       tcp  --  0.0.0.0/0            0.0.0.0/0            tcp dpt:3306
+15   ACCEPT     icmp --  0.0.0.0/0            0.0.0.0/0            icmptype 8
+16   ACCEPT     udp  --  0.0.0.0/0            0.0.0.0/0            udp dpt:53
+17   ACCEPT     tcp  --  0.0.0.0/0            0.0.0.0/0            tcp dpt:53
+18   ACCEPT     udp  --  0.0.0.0/0            0.0.0.0/0            udp dpt:67
+19   ACCEPT     tcp  --  0.0.0.0/0            0.0.0.0/0            tcp dpt:67
+20   DROP       tcp  --  0.0.0.0/0            0.0.0.0/0            tcp dpt:6379
+
+Chain FORWARD (policy ACCEPT)
+num  target     prot opt source               destination
+1    ACCEPT     all  --  0.0.0.0/0            192.168.122.0/24     ctstate RELATED,ESTABLISHED
+2    ACCEPT     all  --  192.168.122.0/24     0.0.0.0/0
+3    ACCEPT     all  --  0.0.0.0/0            0.0.0.0/0
+4    REJECT     all  --  0.0.0.0/0            0.0.0.0/0            reject-with icmp-port-unreachable
+5    REJECT     all  --  0.0.0.0/0            0.0.0.0/0            reject-with icmp-port-unreachable
+6    ACCEPT     all  --  0.0.0.0/0            192.168.122.0/24     ctstate RELATED,ESTABLISHED
+7    ACCEPT     all  --  192.168.122.0/24     0.0.0.0/0
+8    ACCEPT     all  --  0.0.0.0/0            0.0.0.0/0
+9    REJECT     all  --  0.0.0.0/0            0.0.0.0/0            reject-with icmp-port-unreachable
+10   REJECT     all  --  0.0.0.0/0            0.0.0.0/0            reject-with icmp-port-unreachable
+11   ACCEPT     all  --  0.0.0.0/0            192.168.122.0/24     ctstate RELATED,ESTABLISHED
+12   ACCEPT     all  --  192.168.122.0/24     0.0.0.0/0
+13   ACCEPT     all  --  0.0.0.0/0            0.0.0.0/0
+14   REJECT     all  --  0.0.0.0/0            0.0.0.0/0            reject-with icmp-port-unreachable
+15   REJECT     all  --  0.0.0.0/0            0.0.0.0/0            reject-with icmp-port-unreachable
+
+Chain OUTPUT (policy ACCEPT)
+num  target     prot opt source               destination
+1    ACCEPT     udp  --  0.0.0.0/0            0.0.0.0/0            udp dpt:68
+2    ACCEPT     udp  --  0.0.0.0/0            0.0.0.0/0            udp dpt:68
+3    ACCEPT     udp  --  0.0.0.0/0            0.0.0.0/0            udp dpt:68
+###############################################################
+示例删除以3306为结尾的14 sudo iptables -D INPUT 14
