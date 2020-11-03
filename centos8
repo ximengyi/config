@@ -1,0 +1,7 @@
+#1设置自动连接网络
+ ifconfig -a  //查看网络状况
+ cd /etc/sysconfig/network-scripts/   //进入配置文件夹
+ ls  cat 
+ 进入编辑模式后，用箭头键将光标移动到 ONBOOT=no 这一行，将后面的 no 改为 yes
+ 
+
