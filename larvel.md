@@ -1,5 +1,5 @@
  
- 自定义验证规则
+ 假如数据库有唯一索引验证唯一索引
  use Illuminate\Validation\Rule;
  
  
